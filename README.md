@@ -38,7 +38,7 @@ Copy the `chatgpt-welcome.wav` or replace it with your own.
 Please note, the actual path of your sounds directory may be different depending on your system.
 
 ```bash
-cp chatgpt-welcome.wav /var/lib/asterisk/sounds/
+cp chatgpt-welcome.wav /var/lib/asterisk/sounds/en/
 cp openai_agi.py /var/lib/asterisk/agi-bin/
 chmod 755 /var/lib/asterisk/agi-bin/openai_agi.py
 ```
@@ -51,7 +51,8 @@ nano /etc/asterisk/extensions_custom.conf
 
 Here is an example of what the dialplan might look like. Replace the phone number to your own.
 
-```ini
+```
+[incoming]
 exten = 31532401205,1,Noop(ChatGPT)
  same = n,answer()
  same = n,AGI(/var/lib/asterisk/agi-bin/openai_agi.py)
