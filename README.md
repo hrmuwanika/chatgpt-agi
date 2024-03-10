@@ -8,7 +8,7 @@ A proof of concept AGI script that integrates Asterisk with ChatGPT to hold conv
 #### Cloning and installing dependencies
 Clone the repo somewhere on your Asterisk system. For example, to `/usr/src/`:
 ```bash
-apt install -y git python3 python3-dev python3-pip python3-venv
+apt install -y git python3 python3-dev python3-pip
 pip3 install --upgrade pip
 ln -s /usr/bin/pip3 /usr/bin/pip
 
@@ -20,10 +20,7 @@ Then, create a virtual environment and install the dependencies:
 
 ```bash
 cd chatgpt-agi
-python3 -m venv venv
-source venv/bin/activate
 pip3 install -r requirements.txt
-deactivate
 ```
 
 Make sure to replace the API key in `chatgpt_agi.py` to your own. 
@@ -39,7 +36,7 @@ Please note, the actual path of your sounds directory may be different depending
 
 ```bash
 cp chatgpt-welcome.wav /var/lib/asterisk/sounds/en/
-cp openai_agi.py /var/lib/asterisk/agi-bin/
+cp chatgpt_agi.py /var/lib/asterisk/agi-bin/
 
 chmod -R 755 /var/lib/asterisk/agi-bin/openai_agi.py
 ```
