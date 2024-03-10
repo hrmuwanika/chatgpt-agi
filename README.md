@@ -38,7 +38,7 @@ Please note, the actual path of your sounds directory may be different depending
 cp chatgpt-welcome.wav /var/lib/asterisk/sounds/en/
 cp chatgpt_agi.py /var/lib/asterisk/agi-bin/
 
-chmod -R 755 /var/lib/asterisk/agi-bin/openai_agi.py
+chmod -R 755 /var/lib/asterisk/agi-bin/chatgpt_agi.py
 ```
 
 Next, edit your `extensions.conf`. 
