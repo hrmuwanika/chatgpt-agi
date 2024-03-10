@@ -6,10 +6,13 @@ A proof of concept AGI script that integrates Asterisk with ChatGPT to hold conv
 
 ## Deployment
 #### Cloning and installing dependencies
-Clone the repo somewhere on your Asterisk system. For example, to `/usr/local/src/`:
-
+Clone the repo somewhere on your Asterisk system. For example, to `/usr/src/`:
 ```bash
-cd /usr/local/src/
+apt install -y git python3 python3-dev python3-pip python3-venv
+pip3 install --upgrade pip
+ln -s /usr/bin/pip3 /usr/bin/pip
+
+cd /usr/src/
 git clone https://github.com/speakupnl/chatgpt-agi.git
 ```
 
@@ -26,7 +29,7 @@ deactivate
 Make sure to replace the API key in `chatgpt_agi.py` to your own. 
 
 ```bash
-vim chatgpt_agi.py
+nano chatgpt_agi.py
 ```
 
 #### Configuring Asterisk
@@ -35,13 +38,15 @@ Copy the `chatgpt-welcome.wav` or replace it with your own.
 Please note, the actual path of your sounds directory may be different depending on your system.
 
 ```bash
-cp chatgpt-welcome.wav /usr/share/asterisk/sounds/
+cp chatgpt-welcome.wav /var/lib/asterisk/sounds/
+cp openai_agi.py /var/lib/asterisk/agi-bin/
+chmod 755 /var/lib/asterisk/agi-bin/openai_agi.py
 ```
 
-Next, edit your `extensions.conf`. 
+Next, edit your `extensions_custom.conf`. 
 
 ```bash
-vim /etc/asterisk/extensions.conf
+nano /etc/asterisk/extensions_custom.conf
 ```
 
 Here is an example of what the dialplan might look like. Replace the phone number to your own.
@@ -49,7 +54,7 @@ Here is an example of what the dialplan might look like. Replace the phone numbe
 ```ini
 exten = 31532401205,1,Noop(ChatGPT)
  same = n,answer()
- same = n,AGI(/usr/local/src/chatgpt-agi/venv/bin/python3 /usr/local/src/chatgpt-agi/openai_agi.py)
+ same = n,AGI(/var/lib/asterisk/agi-bin/openai_agi.py)
 ```
 
 Reload the Asterisk dialplan
