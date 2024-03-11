@@ -53,7 +53,7 @@ Here is an example of what the dialplan might look like. Replace the phone numbe
 [internal]
 exten = _2222,1,Noop(ChatGPT)
  same = n,answer()
- same = n,AGI(/var/lib/asterisk/agi-bin/openai_agi.py)
+ same = n,AGI(/var/lib/asterisk/agi-bin/chatgpt_agi.py)
  same = n,Hangup()
 ```
 
