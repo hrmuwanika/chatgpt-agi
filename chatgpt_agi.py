@@ -1,4 +1,4 @@
-#!/usr/local/src/chatgpt-agi/venv/bin/python3
+#!/usr/bin/env python3
 
 import os
 import random
@@ -27,7 +27,7 @@ def send_request(prompt):
 agi = AGI()
 callerId = agi.env['agi_callerid']
 agi.verbose(f"call from {callerId}")
-filepath = "/usr/share/asterisk/sounds"
+filepath = "/var/lib/asterisk/sounds/en/"
 
 # Play welcome
 agi.stream_file(f"{filepath}/chatgpt-welcome", "1234567890*#")
